@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  openid: MyString
+  last_visited_at: 2011-04-02 23:40:06
+
+two:
+  openid: MyString
+  last_visited_at: 2011-04-02 23:40:06
