@@ -9,4 +9,8 @@ class User < ActiveRecord::Base
     end
     return u
   end
+
+  def self.guest
+    User.new :openid => 'guest'
+  end
 end

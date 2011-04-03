@@ -7,8 +7,51 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
-
+<div id="header" class="clear">
+<div id="h_left">hi, <%=(current_user||User.guest).openid%></div>
+<div id="h_right">
+  <span><a href="/login?by=google" >登录</a></span>
+  <span><a href="/logout" >注销</a></span>
+</div>
+</div>
 <%= yield %>
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

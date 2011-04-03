@@ -1,5 +1,7 @@
 Mytw::Application.routes.draw do
-#  root :to => 'site#index'
+  get "welcome/index"
+
+  root :to => 'welcome#index'
   
 #  match 'signup' => 'users#new', :as => :signup
 #  match 'register' => 'users#create', :as => :register
