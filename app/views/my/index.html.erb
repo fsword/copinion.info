@@ -1,4 +1,4 @@
-<h1>Now, we are talking about ...</h1>
+<h1>My timeline</h1>
 
 
 <% @opinions.each do |opinion| %>
@@ -6,9 +6,10 @@
   <div class="left"><%= opinion.user.openid %></div>
   <div class="right cleft">
     <div><%= opinion.msg %></div>
-    <div><%=link_to opinion.topic if opinion.topic %></div>
+    <div><%=link_to 'Topic' if opinion.topic %></div>
   </div>
   </div>
 </div>
 <% end %>
 
+<%= link_to 'New Opinion', new_opinion_path, :remote => true %>

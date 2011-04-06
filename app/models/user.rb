@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+
+  has_many :opinions
+  
   def self.auth_with_openid openid
     u = find_by_openid openid
     if u.nil?

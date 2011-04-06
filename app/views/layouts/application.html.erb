@@ -7,15 +7,70 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
-<div id="header" class="clear">
-<div id="h_left">hi, <%=(current_user||User.guest).openid%></div>
-<div id="h_right">
-  <span><a href="/login?by=google" >登录</a></span>
-  <span><a href="/logout" >注销</a></span>
-</div>
-</div>
-<%= yield %>
+<div id="doc">
+  <div id="banners" style="clear:both;"></div>
 
+  <div id="top-bar">
+    
+    <div class="links">
+      <!--form id="search-form" action="/search" method="GET">
+        <span class="glass left"><i></i></span>
+        <input value="" placeholder="Search" name="q" id="search-query" type="text" />
+      </form-->
+      <ul>
+        <li id="global-nav-home"><a href="/">Home</a></li>
+        <!--li id="global-nav-profile"><a href="/fswordlee">Profile</a></li>
+        <li id="global-nav-messages"><a href="/messages">Messages</a></li>
+        <li id="global-nav-whotofollow"><a href="/#!/who_to_follow">Who To Follow</a></li-->
+      </ul>
+    </div>
+    <div id="session">
+      <% if current_user %>
+      <span id="screen-name"><%=current_user.openid %></span>
+      <%=link_to 'logout', logout_path %>
+      <!--div class="dropdown">
+        <ul class="user-dropdown">
+          <li><a href="/settings/account">Settings</a></li>
+          <li><a href="http://support.twitter.com">Help</a></li>
+          <li>
+            <form method="post" action="/account/use_phx" class="turn-phx-off-form">
+              <input type="hidden" name="setting" value="false"/>
+              <input type="hidden" name="format" value="html"/>
+              <input type='hidden' value='afc6398f57b5731dcfb2123d4f39d8730e37e800' name='authenticity_token'/>
+              <button type="submit" class="turn-phx-off-button">Switch to Old Twitter</button>
+            </form>
+          </li>
+
+          <li>
+            <form class="signout-form" action="/logout" method="POST">
+              <a class="signout-button" href="#">Sign out</a>
+              <input type='hidden' value='afc6398f57b5731dcfb2123d4f39d8730e37e800' name='authenticity_token'/>
+            </form>
+          </li>
+        </ul>
+      </div-->
+      <% else %>
+      login by
+      <%=raw SessionController::SITES.collect{|k,v|
+        link_to k.to_s, "/login?by=#{k}"
+      }.join( ' | ' )%>
+      <% end %>
+    </div>
+        <!--span class="vr"></span>
+        <a id="new-tweet" title="New Tweet"><span>New Tweet</span></a-->
+    <div id="message-drawer"><!--输出用户提示信息--></div>
+  </div>
+
+  <div id="page-outer">
+    <div id="page-container" class="fof-container">
+      <div>
+        <div class="four-oh-four">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
 

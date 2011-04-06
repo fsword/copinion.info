@@ -1,4 +1,8 @@
 Mytw::Application.routes.draw do
+  get "my/index"
+
+  resources :opinions
+
   get "welcome/index"
 
   root :to => 'welcome#index'
@@ -7,7 +11,7 @@ Mytw::Application.routes.draw do
 #  match 'register' => 'users#create', :as => :register
   match 'login' => 'session#new', :as => :login
   match 'logout' => 'session#destroy', :as => :logout
-  match 'add' => 'session#add', :as => :add
+  match 'auth' => 'session#auth', :as => :auth
   match 'openid_mock' => 'session#openid_mock_server', :as => :openid_mock
 
   # The priority is based upon order of creation:
