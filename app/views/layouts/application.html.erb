@@ -7,106 +7,109 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
-<div id="doc">
-  <div id="banners" style="clear:both;"></div>
-
-  <div id="top-bar">
-    
-    <div class="links">
-      <!--form id="search-form" action="/search" method="GET">
-        <span class="glass left"><i></i></span>
-        <input value="" placeholder="Search" name="q" id="search-query" type="text" />
-      </form-->
-      <ul>
-        <li id="global-nav-home"><a href="/">Home</a></li>
-        <!--li id="global-nav-profile"><a href="/fswordlee">Profile</a></li>
-        <li id="global-nav-messages"><a href="/messages">Messages</a></li>
-        <li id="global-nav-whotofollow"><a href="/#!/who_to_follow">Who To Follow</a></li-->
-      </ul>
-    </div>
-    <div id="session">
-      <% if current_user %>
-      <span id="screen-name"><%=current_user.openid %></span>
-      <%=link_to 'logout', logout_path %>
-      <!--div class="dropdown">
-        <ul class="user-dropdown">
-          <li><a href="/settings/account">Settings</a></li>
-          <li><a href="http://support.twitter.com">Help</a></li>
-          <li>
-            <form method="post" action="/account/use_phx" class="turn-phx-off-form">
-              <input type="hidden" name="setting" value="false"/>
-              <input type="hidden" name="format" value="html"/>
-              <input type='hidden' value='afc6398f57b5731dcfb2123d4f39d8730e37e800' name='authenticity_token'/>
-              <button type="submit" class="turn-phx-off-button">Switch to Old Twitter</button>
-            </form>
-          </li>
-
-          <li>
-            <form class="signout-form" action="/logout" method="POST">
-              <a class="signout-button" href="#">Sign out</a>
-              <input type='hidden' value='afc6398f57b5731dcfb2123d4f39d8730e37e800' name='authenticity_token'/>
-            </form>
-          </li>
-        </ul>
-      </div-->
-      <% else %>
-      login by
-      <%=raw SessionController::SITES.collect{|k,v|
-        link_to k.to_s, "/login?by=#{k}"
-      }.join( ' | ' )%>
-      <% end %>
-    </div>
-        <!--span class="vr"></span>
-        <a id="new-tweet" title="New Tweet"><span>New Tweet</span></a-->
-    <div id="message-drawer"><!--输出用户提示信息--></div>
+<div class="line">
+  <div class="line-link">
+    <span style=" float:left;">
+      <a href="#"><!--微博--></a>　<a href="#"><!--找人--></a></span>
+    <span style="float:right;">
+<% if current_user %>
+      <a href="#"><%= current_user.openid %></a>
+          <%= link_to '退出', logout_path %>
+<% else %>
+      使用
+          <%= raw SessionController::SITES.collect { |k, v|
+              link_to k.to_s, "/login?by=#{k}"
+          }.join(' | ') %>
+          登录
+<% end %>
+    </span>
   </div>
-
-  <div id="page-outer">
-    <div id="page-container" class="fof-container">
-      <div>
-        <div class="four-oh-four">
-          <%= yield %>
+</div>
+<div class="logo">
+  <div><img src="" width="150" height="50"/></div>
+  <div class="menu">
+    <ul>
+      <li><a href="#">我的首页</a></li>
+      <li><a href="#">我的微博</a></li>
+      <li><a href="#">好友</a></li>
+      <li><a href="#">模板</a></li>
+    </ul>
+    <input type="text" id="m_keyword" autocomplete="off" dycolor="false" title="搜索微博、找人" accesskey="3"/>
+    <a class="submit" href="#">搜索</a></div>
+</div>
+</div>
+<div class="main">
+  <table width="800" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td valign="top" class="left">
+        <div align="center" class="l-div">
+          <p class="l-p">你还可以输入<strong>140</strong>个字</p>
+<%=form_for @opinion = Opinion.new, :remote => true do |opinion| %>
+              <%=text_area :opinion, :msg, :style => "width:555px; height:100px; border:#CCC 1px solid;" %>
+              <div class="button"><img src="/images/imgs.gif" width="308" height="23"/>
+                <input name="" type="submit" value="" 
+                       style="background:url(/images/send.png) no-repeat; float:right; width:100px; height:30px; border:0px;"/>
+              </div>
+<% end %>
         </div>
-      </div>
-    </div>
-  </div>
+        <div class="l-main">
+          <div class="m-link">
+            <a href="#" class="ontime">全部</a>
+            <a href="#">原创</a>
+            <a href="#">图片</a>
+            <a href="#">视频</a>
+            <a href="#">音乐</a>
+          </div>
+          <div id="opinions">
+            <%= yield %>
+          </div>
+        </div>
+      </td>
+      <td valign="top" class="right">
+        <div class="r-word">
+          <div class="rimg"><%= image_tag current_user.img_path if current_user %></div>
+          <div class="rword">
+            <p><a href="#" style="font-size:14px; font-weight:bold;"><%= current_user.openid if current_user %></a></p>
+
+            <p><a href="#">北京</a> <a href="#"><%= current_user.zone if current_user %></a></p>
+          </div>
+          <div style="clear:both;"></div>
+          <ul class="rul">
+            <li><a href="#">18<br/>
+              关注</a></li>
+            <li><a href="#">|18<br/>
+              |粉丝</a></li>
+            <li><a href="#">|22<br/>
+              |微博</a></li>
+          </ul>
+          <ul class="rula">
+            <li><a href="#">我的首页</a></li>
+            <li><a href="#">@提到我的</a></li>
+            <li><a href="#">我的评论</a></li>
+            <li><a href="#">我的收藏</a></li>
+          </ul>
+          <ul class="rula">
+            <li><a href="#">热门话题</a>
+
+              <p><a href="#">日本7.1级地震<span style="font-size:10px; color:#999">(18396856)</span></a></p>
+
+              <p><a href="#">日本7.1级地震<span style="font-size:10px; color:#999">(18396856)</span></a></p>
+
+              <p><a href="#">日本7.1级地震<span style="font-size:10px; color:#999">(18396856)</span></a></p>
+
+              <p><a href="#">日本7.1级地震<span style="font-size:10px; color:#999">(18396856)</span></a></p>
+
+              <p><a href="#">日本7.1级地震<span style="font-size:10px; color:#999">(18396856)</span></a></p>
+
+              <p><a href="#">日本7.1级地震<span style="font-size:10px; color:#999">(18396856)</span></a></p>
+            </li>
+          </ul>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <div style="clear:both;"></div>
+  <div class="bottom">版权所有</div>
 </div>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

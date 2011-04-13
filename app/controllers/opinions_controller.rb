@@ -1,4 +1,9 @@
 class OpinionsController < ApplicationController
+
+  before_filter :required_user
+
+  respond_to :html, :xml, :js
+  
   # GET /opinions
   # GET /opinions.xml
   def index
@@ -40,17 +45,8 @@ class OpinionsController < ApplicationController
   # POST /opinions
   # POST /opinions.xml
   def create
-    @opinion = Opinion.new(params[:opinion])
-
-    respond_to do |format|
-      if @opinion.save
-        format.html { redirect_to(@opinion, :notice => 'Opinion was successfully created.') }
-        format.xml  { render :xml => @opinion, :status => :created, :location => @opinion }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @opinion.errors, :status => :unprocessable_entity }
-      end
-    end
+    @opinion = current_user.opinions.create(params[:opinion])
+    respond_with(@opinion)
   end
 
   # PUT /opinions/1

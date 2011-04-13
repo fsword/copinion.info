@@ -1,15 +1,23 @@
-<h1>My timeline</h1>
-
-
 <% @opinions.each do |opinion| %>
-<div class="clear">
-  <div class="left"><%= opinion.user.openid %></div>
-  <div class="right cleft">
-    <div><%= opinion.msg %></div>
-    <div><%=link_to 'Topic' if opinion.topic %></div>
-  </div>
-  </div>
-</div>
+    <div class="m-word">
+      <div class="img">
+        <%=image_tag opinion.user.img_path, :size => '50x50' %>
+      </div>
+      <div class="word">
+        <p><a href="#"><%=opinion.user.openid %></a>：<%=opinion.msg %></p>
+<% if opinion.topic %>
+        <div class="word-bg">
+          <a href="#"><%=opinion.topic.user.openid %></a>
+          <%=opinion.topic.msg %>
+          <a href="#" style="color:#999">原文转发(3)</a>|<a href="#" style="color:#999">原文评论(3)</a>
+        </div>
+<% end %>
+        <p class="w-p">
+          <a href="#"><%=opinion.created_at %></a> 来自<a href="#">新浪微博</a>
+          <span><a href="#">转发(1)</a> | <a href="#">收藏</a> | <a href="#">评论</a></span>
+        </p>
+      </div>
+      <div style="clear:both;"></div>
+    </div>
 <% end %>
 
-<%= link_to 'New Opinion', new_opinion_path, :remote => true %>

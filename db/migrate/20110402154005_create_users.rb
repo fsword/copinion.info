@@ -3,6 +3,8 @@ class CreateUsers < ActiveRecord::Migration
     create_table :users do |t|
       t.string :openid
       t.datetime :last_visited_at
+      t.string :img_path
+      t.string :zone
 
       t.timestamps
     end
