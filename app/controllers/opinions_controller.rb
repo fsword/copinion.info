@@ -1,6 +1,6 @@
 class OpinionsController < ApplicationController
 
-  before_filter :required_user
+  before_filter :required_user,:only => [:create,:update]
 
   respond_to :html, :xml, :js
   

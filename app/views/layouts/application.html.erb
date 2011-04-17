@@ -13,14 +13,15 @@
       <a href="#"><!--微博--></a>　<a href="#"><!--找人--></a></span>
     <span style="float:right;">
 <% if current_user %>
-      <a href="#"><%= current_user.openid %></a>
+      <a href="#"><%= current_user.display_name %></a>
           <%= link_to '退出', logout_path %>
 <% else %>
-      使用
-          <%= raw SessionController::SITES.collect { |k, v|
-              link_to k.to_s, "/login?by=#{k}"
-          }.join(' | ') %>
-          登录
+
+      <% form_tag(login_url,:method => "GET") do %>
+          欢迎登录，请输入你的openid <%= text_field_tag "openid_identifier" %>
+          <%= submit_tag '登录', :disable_with => "登录中..." %>
+      <% end %>
+<!--%=link_to 'openid', :controller => 'session', :action => 'openid' %> 登录-->
 <% end %>
     </span>
   </div>
@@ -69,7 +70,7 @@
         <div class="r-word">
           <div class="rimg"><%= image_tag current_user.img_path if current_user %></div>
           <div class="rword">
-            <p><a href="#" style="font-size:14px; font-weight:bold;"><%= current_user.openid if current_user %></a></p>
+            <p><a href="#" style="font-size:14px; font-weight:bold;"><%= current_user.display_name if current_user %></a></p>
 
             <p><a href="#">北京</a> <a href="#"><%= current_user.zone if current_user %></a></p>
           </div>

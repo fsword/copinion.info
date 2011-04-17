@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(:version => 20110403143540) do
 
   create_table "users", :force => true do |t|
     t.string   "openid"
+    t.string   "display_name"
     t.datetime "last_visited_at"
     t.string   "img_path"
     t.string   "zone"

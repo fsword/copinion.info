@@ -9,10 +9,14 @@ Mytw::Application.routes.draw do
   
 #  match 'signup' => 'users#new', :as => :signup
 #  match 'register' => 'users#create', :as => :register
-  match 'login' => 'session#new', :as => :login
-  match 'logout' => 'session#destroy', :as => :logout
-  match 'auth' => 'session#auth', :as => :auth
-  match 'openid_mock' => 'session#openid_mock_server', :as => :openid_mock
+  match 'login' => 'sessions#new', :as => :login
+  match 'logout' => 'sessions#destroy', :as => :logout
+  match 'auth' => 'sessions#complete', :as => :auth
+#  match 'auth' => 'sessions#auth', :as => :auth
+#  match 'openid_mock' => 'session#openid_mock_server', :as => :openid_mock
+
+  resource :session
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

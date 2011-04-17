@@ -1,9 +1,11 @@
+require "openid" 
+
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
   def required_user
     unless current_user
-      redirect_to '/'
+      redirect_to root_url
     end
   end
 
