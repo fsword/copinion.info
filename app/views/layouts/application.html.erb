@@ -2,7 +2,8 @@
 <html>
 <head>
   <title>Mytw</title>
-  <%= stylesheet_link_tag :all %>
+  <link href="/stylesheets/application.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/scaffold.css" media="screen" rel="stylesheet" type="text/css" />
   <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tag %>
 </head>
@@ -31,8 +32,8 @@
   <div><img src="" width="150" height="50"/></div>
   <div class="menu">
     <ul>
-      <li><a href="#">我的首页</a></li>
-      <li><a href="#">我的微博</a></li>
+      <li><a href="/">我的首页</a></li>
+      <li><a href="/my">我的微博</a></li>
       <li><a href="#">好友</a></li>
       <li><a href="#">模板</a></li>
     </ul>
