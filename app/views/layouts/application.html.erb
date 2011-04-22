@@ -43,16 +43,18 @@
   <table width="800" border="0" cellspacing="0" cellpadding="0">
     <tr>
       <td valign="top" class="left">
+<% if current_user %>
         <div align="center" class="l-div">
-          <p class="l-p">你还可以输入<strong>140</strong>个字</p>
-<%=form_for @opinion = Opinion.new, :remote => true do |opinion| %>
+          <p class="l-p">你可以输入<strong>140</strong>个字</p>
+    <%=form_for @opinion = Opinion.new, :remote => true do |opinion| %>
               <%=text_area :opinion, :msg, :style => "width:555px; height:100px; border:#CCC 1px solid;" %>
               <div class="button"><img src="/images/imgs.gif" width="308" height="23"/>
                 <input name="" type="submit" value="" 
                        style="background:url(/images/send.png) no-repeat; float:right; width:100px; height:30px; border:0px;"/>
               </div>
-<% end %>
+    <% end %>
         </div>
+<% end %>
         <div class="l-main">
           <div class="m-link">
             <a href="#" class="ontime">全部</a>
@@ -68,10 +70,11 @@
       </td>
       <td valign="top" class="right">
         <div class="r-word">
-          <div class="rimg"><%= image_tag current_user.img_path if current_user %></div>
+<% if current_user %>
+          <div class="rimg">
+            <%= image_tag current_user.img_path, :title=>current_user.display_name if current_user %>
+          </div>
           <div class="rword">
-            <p><a href="#" style="font-size:14px; font-weight:bold;"><%= current_user.display_name if current_user %></a></p>
-
             <p><a href="#">北京</a> <a href="#"><%= current_user.zone if current_user %></a></p>
           </div>
           <div style="clear:both;"></div>
@@ -89,6 +92,7 @@
             <li><a href="#">我的评论</a></li>
             <li><a href="#">我的收藏</a></li>
           </ul>
+<% end %>
           <ul class="rula">
             <li><a href="#">热门话题</a>
 

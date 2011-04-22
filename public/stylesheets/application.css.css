@@ -4,7 +4,7 @@ body {
   color: #666666;
   font-family: Arial, Helvetica, sans-serif;
 }
-h, p, li, ul, h2 {
+h1, p, li, ul, h2 {
   margin: 0px;
   padding: 0px;
 }
