@@ -1,19 +1,12 @@
 Mytw::Application.routes.draw do
-  get "my/index"
 
   resources :opinions
 
-  get "welcome/index"
-
   root :to => 'welcome#index'
   
-#  match 'signup' => 'users#new', :as => :signup
-#  match 'register' => 'users#create', :as => :register
   match 'login' => 'sessions#new', :as => :login
   match 'logout' => 'sessions#destroy', :as => :logout
   match 'auth' => 'sessions#complete', :as => :auth
-#  match 'auth' => 'sessions#auth', :as => :auth
-#  match 'openid_mock' => 'session#openid_mock_server', :as => :openid_mock
 
   resource :session
 
@@ -73,5 +66,5 @@ Mytw::Application.routes.draw do
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id(.:format)))'
+  match ':controller(/:action(/:id(.:format)))'
 end

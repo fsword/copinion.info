@@ -13,15 +13,16 @@
       <a href="#"><!--微博--></a>　<a href="#"><!--找人--></a></span>
     <span style="float:right;">
 <% if current_user %>
-      <a href="#"><%= current_user.display_name %></a>
+      <a href="#">你好，<%= current_user.display_name %></a>
           <%= link_to '退出', logout_path %>
 <% else %>
 
       <% form_tag(login_url,:method => "GET") do %>
+          <b style="color:red"><%=flash[:error] %></b>
+          <b style="color:green"><%=flash[:success] %></b>
           欢迎登录，请输入你的openid <%= text_field_tag "openid_identifier" %>
           <%= submit_tag '登录', :disable_with => "登录中..." %>
       <% end %>
-<!--%=link_to 'openid', :controller => 'session', :action => 'openid' %> 登录-->
 <% end %>
     </span>
   </div>

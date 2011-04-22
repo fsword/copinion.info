@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
       Rails.logger.info "尚不存在，创建之!"
       u = User.create(
           :openid => openid, :display_name => display_name,
-          :last_visited_at => Time.now, :img_path => "/images/rails.png", :zone => '中国' 
+          :last_visited_at => Time.now, :img_path => "/images/rails.png", :zone => '中国'
       )
     elsif u != nil
       u.update_attribute :last_visited_at, Time.now
