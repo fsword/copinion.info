@@ -9,6 +9,7 @@ Mytw::Application.routes.draw do
   match 'auth' => 'sessions#complete', :as => :auth
 
   resource :session
+  resources :tags
 
 
   # The priority is based upon order of creation:

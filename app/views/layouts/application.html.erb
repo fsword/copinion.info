@@ -97,18 +97,10 @@
 <% end %>
           <ul class="rula">
             <li><a href="#">热门话题</a>
+<% Tag.hots.limit(5).each{|tag| %>
 
-              <p><a href="#">日本7.1级地震<span style="font-size:10px; color:#999">(18396856)</span></a></p>
-
-              <p><a href="#">日本7.1级地震<span style="font-size:10px; color:#999">(18396856)</span></a></p>
-
-              <p><a href="#">日本7.1级地震<span style="font-size:10px; color:#999">(18396856)</span></a></p>
-
-              <p><a href="#">日本7.1级地震<span style="font-size:10px; color:#999">(18396856)</span></a></p>
-
-              <p><a href="#">日本7.1级地震<span style="font-size:10px; color:#999">(18396856)</span></a></p>
-
-              <p><a href="#">日本7.1级地震<span style="font-size:10px; color:#999">(18396856)</span></a></p>
+              <p><%=link_to tag.name, tag_url(tag) %></p>
+<% } %>
             </li>
           </ul>
         </div>
