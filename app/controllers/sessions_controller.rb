@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
 
   def new
     begin
-      identifier = params[:openid_identifier]
+      identifier = params[:openid_identifier].gsub /[\t\n]/, ''
       if identifier.nil?
         flash[:error] = "Enter an OpenID identifier"
         redirect_to root_url
