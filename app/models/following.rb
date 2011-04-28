@@ -1,4 +1,4 @@
 class Following < ActiveRecord::Base
-  belongs_to :user
-  belongs_to :follow, :polymorphic => false, :class_name => 'User'
+  belongs_to :user, :class_name => 'User', :foreign_key => 'user_id'
+  belongs_to :foer, :class_name => 'User', :foreign_key => 'follow_id'
 end
