@@ -1,5 +1,7 @@
 class TagsController < ApplicationController
 
+  include ActsAsTaggableOn
+
   # GET /opinions/1
   # GET /opinions/1.xml
   def show

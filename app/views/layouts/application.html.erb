@@ -48,9 +48,10 @@
 <% if current_user %>
         <div align="center" class="l-div">
           <p class="l-p">你可以输入<strong>140</strong>个字</p>
-    <%=form_for @opinion = Opinion.new, :remote => true do |opinion| %>
-              <%=text_area :opinion, :msg, :style => "width:555px; height:100px; border:#CCC 1px solid;" %>
-              <div class="button"><img src="/images/imgs.gif" width="308" height="23"/>
+    <%=form_for @opinion = Opinion.new, :remote => true do |f| %>
+              <%=f.text_area :msg, :style => "width:555px; height:100px; border:#CCC 1px solid;" %>
+              <div class="button">
+                <!--<img src="/images/imgs.gif" width="308" height="23"/>-->
                 <input name="" type="submit" value="" 
                        style="background:url(/images/send.png) no-repeat; float:right; width:100px; height:30px; border:0px;"/>
               </div>
@@ -59,11 +60,11 @@
 <% end %>
         <div class="l-main">
           <div class="m-link">
-            <a href="#" class="ontime">全部</a>
-            <a href="#">原创</a>
-            <a href="#">图片</a>
-            <a href="#">视频</a>
-            <a href="#">音乐</a>
+            <!--<a href="#" class="ontime">全部</a>-->
+            <!--<a href="#">原创</a>-->
+            <!--<a href="#">图片</a>-->
+            <!--<a href="#">视频</a>-->
+            <!--<a href="#">音乐</a>-->
           </div>
           <div id="opinions">
             <%= yield %>
@@ -74,10 +75,10 @@
         <div class="r-word">
 <% if current_user %>
           <div class="rimg">
-            <%= image_tag current_user.img_path, :title=>current_user.display_name if current_user %>
+            <%= image_tag current_user.img_path, :title=>current_user.display_name %>
           </div>
           <div class="rword">
-            <p><a href="#">北京</a> <a href="#"><%= current_user.zone if current_user %></a></p>
+            <p><a href="#">北京</a> <a href="#"><%= current_user.zone %></a></p>
           </div>
           <div style="clear:both;"></div>
           <ul class="rul">
@@ -97,7 +98,7 @@
 <% end %>
           <ul class="rula">
             <li><a href="#">热门话题</a>
-<% Tag.hots.limit(5).each{|tag| %>
+<% hot_tag(5).each{|tag| %>
 
               <p><%=link_to tag.name, tag_url(tag) %></p>
 <% } %>

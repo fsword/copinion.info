@@ -32,6 +32,7 @@ GEM
       activemodel (= 3.0.6)
       activesupport (= 3.0.6)
     activesupport (3.0.6)
+    acts-as-taggable-on (2.0.6)
     arel (2.0.9)
     bouncy-castle-java (1.5.0145.2)
     builder (2.1.2)
@@ -78,6 +79,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-jdbcsqlite3-adapter
+  acts-as-taggable-on
   jdbc-sqlite3
   jruby-openssl
   rails (= 3.0.6)

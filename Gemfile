@@ -14,6 +14,8 @@ gem "ruby-openid"
 
 gem "jruby-openssl"
 
+gem 'acts-as-taggable-on'
+
 #
 # Use unicorn as the web server
 # gem 'unicorn'
