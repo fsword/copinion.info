@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
 
   has_many :opinions
+  has_many :followings
+  
+  has_many :follows, :through => :followings, :source => :user
   
   def self.auth_with_openid openid, display_name=openid
     u = find_by_openid openid
