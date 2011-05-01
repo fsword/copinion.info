@@ -8,7 +8,6 @@ Mytw::Application.routes.draw do
   match 'logout' => 'sessions#destroy', :as => :logout
   match 'auth' => 'sessions#complete', :as => :auth
 
-  resource :session
   resources :tags
 
 

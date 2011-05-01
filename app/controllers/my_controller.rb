@@ -6,4 +6,11 @@ class MyController < ApplicationController
     @opinions = current_user.opinions
   end
 
+  def leaders
+    @leaders = current_user.leaders
+  end
+
+  def foers
+    @foers = current_user.foers
+  end
 end

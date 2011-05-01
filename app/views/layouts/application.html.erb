@@ -75,19 +75,24 @@
         <div class="r-word">
 <% if current_user %>
           <div class="rimg">
-            <%= image_tag current_user.img_path, :title=>current_user.display_name %>
+            <%= image_tag current_user.img_path, :title => current_user.display_name %>
           </div>
           <div class="rword">
-            <p><a href="#">北京</a> <a href="#"><%= current_user.zone %></a></p>
+            <p><a href="#"><%= current_user.zone %></a></p>
           </div>
           <div style="clear:both;"></div>
           <ul class="rul">
-            <li><a href="#">18<br/>
-              关注</a></li>
-            <li><a href="#">|18<br/>
-              |粉丝</a></li>
-            <li><a href="#">|22<br/>
-              |微博</a></li>
+            <li>
+            <%=link_to current_user.leaders.size, :controller => :my, :action => :leaders %><br />
+            <%=link_to '关注', :controller => :my, :action => :leaders %>
+            <li>
+              |<%=link_to current_user.foers.size, :controller => :my, :action => :foers %><br />
+              |<%=link_to '粉丝', :controller => :my, :action => :foers %>
+            </li>
+            <li>
+              |<%=link_to current_user.opinions.size, :controller => :my %><br />
+              |<%=link_to '微博', :controller => :my %>
+            </li>
           </ul>
           <ul class="rula">
             <li><a href="#">我的首页</a></li>
