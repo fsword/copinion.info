@@ -13,4 +13,12 @@ class MyController < ApplicationController
   def foers
     @foers = current_user.foers
   end
+
+  def comments
+    @opinions = current_user.opinions.where('topic_id not null')
+  end
+
+  def to_mes
+    @opinions = Opinion.where("msg like '%@#{current_user.openid}%'")
+  end
 end

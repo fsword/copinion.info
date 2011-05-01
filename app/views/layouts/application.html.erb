@@ -59,13 +59,13 @@
         </div>
 <% end %>
         <div class="l-main">
-          <div class="m-link">
+          <!--<div class="m-link">-->
             <!--<a href="#" class="ontime">全部</a>-->
             <!--<a href="#">原创</a>-->
             <!--<a href="#">图片</a>-->
             <!--<a href="#">视频</a>-->
             <!--<a href="#">音乐</a>-->
-          </div>
+          <!--</div>-->
           <div id="opinions">
             <%= yield %>
           </div>
@@ -95,16 +95,15 @@
             </li>
           </ul>
           <ul class="rula">
-            <li><a href="#">我的首页</a></li>
-            <li><a href="#">@提到我的</a></li>
-            <li><a href="#">我的评论</a></li>
-            <li><a href="#">我的收藏</a></li>
+            <li><%=link_to '我的首页', :controller => :my %></li>
+            <li><%=link_to '@提到我的',:controller => :my, :action => :to_mes %></li>
+            <li><%=link_to '我的评论', :controller => :my, :action => :comments %></li>
+            <!--<li><a href="#">我的收藏</a></li>-->
           </ul>
 <% end %>
           <ul class="rula">
             <li><a href="#">热门话题</a>
 <% hot_tag(5).each{|tag| %>
-
               <p><%=link_to tag.name, tag_url(tag) %></p>
 <% } %>
             </li>
