@@ -1,4 +1,7 @@
 class Opinion < ActiveRecord::Base
+
+  default_scope :order => 'updated_at desc'
+
   belongs_to :topic, :class_name => 'Opinion'
   belongs_to :user
 
