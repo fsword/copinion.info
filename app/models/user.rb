@@ -11,6 +11,12 @@ class User < ActiveRecord::Base
   has_many :ccs
   has_many :concerns, :through => :ccs, :source => :opinion
 
+  before_create do
+    if self.display_name.nil?
+      self.display_name = self.openid
+    end
+  end
+
   def self.auth_with_openid openid, display_name=openid
     u = find_by_openid openid
     if u.nil?
@@ -25,9 +31,4 @@ class User < ActiveRecord::Base
     return u
   end
 
-  def before_create
-    if self.display_name.nil?
-      self.display_name = self.openid
-    end
-  end
 end

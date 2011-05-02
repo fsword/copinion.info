@@ -10,11 +10,11 @@ class Opinion < ActiveRecord::Base
 
   acts_as_taggable
 
-  def before_save
+  before_save do
     self.tag_list = self.msg.scan(/#([^ #]+)#/).flatten
   end
 
-  def after_save
+  after_save do
     user_names = self.msg.scan(/@([^ ]+) ?/)
     self.about_users = User.find :all, :select => :id, :conditions => ['display_name in (?)', user_names.flatten]
   end
