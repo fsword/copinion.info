@@ -15,7 +15,7 @@ class Opinion < ActiveRecord::Base
   end
 
   def after_save
-    user_names = self.msg.scan /@([^ ]+) /
-    self.about_users = User.find :all, :select => :id, :conditions => ['display_name like (?)', user_names.flatten]
+    user_names = self.msg.scan(/@([^ ]+) ?/)
+    self.about_users = User.find :all, :select => :id, :conditions => ['display_name in (?)', user_names.flatten]
   end
 end
