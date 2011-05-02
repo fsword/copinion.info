@@ -19,6 +19,6 @@ class MyController < ApplicationController
   end
 
   def to_mes
-    @opinions = Opinion.where("msg like '%@#{current_user.openid}%'")
+    @opinions = current_user.concerns
   end
 end

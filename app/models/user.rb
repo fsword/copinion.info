@@ -8,6 +8,9 @@ class User < ActiveRecord::Base
   has_many :followlinks, :class_name => 'Following', :foreign_key => 'follow_id'
   has_many :leaders, :through => :followlinks, :source => :leader
 
+  has_many :ccs
+  has_many :concerns, :through => :ccs, :source => :opinion
+
   def self.auth_with_openid openid, display_name=openid
     u = find_by_openid openid
     if u.nil?
